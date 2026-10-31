@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hablemos a tiempo – Pedir ayuda es un acto de valentía</title>
+  <meta name="description" content="Campaña para jóvenes de Lima: señales de alerta, cómo conversar con alguien que lo está pasando mal y ayuda gratuita en la Línea 113, opción 5, las 24 horas.">
+  <meta property="og:title" content="Hablemos a tiempo – Pedir ayuda es un acto de valentía">
+  <meta property="og:description" content="Pedir ayuda es un acto de valentía. Línea 113, opción 5: orientación psicológica gratuita 24 horas.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f5ff;
+      --surface: #ffffff;
+      --ink: #161b45;
+      --muted: #4a5080;
+      --line: #d5daf2;
+      --brand: #1b2559;
+      --on-brand: #ffffff;
+      --glow: #ffc857;
+      --on-glow: #161b45;
+      --calm: #1f8a8a;
+      --bubble-a: #dfe6ff;
+      --bubble-b: #1b2559;
+      --bubble-b-ink: #ffffff;
+      box-sizing: border-box;
+    }
+    [data-theme="dark"] {
+      --bg: #0e1230;
+      --surface: #171d4a;
+      --ink: #eef0ff;
+      --muted: #b4bbe6;
+      --line: #2c3569;
+      --brand: #ffc857;
+      --on-brand: #161b45;
+      --glow: #ffc857;
+      --on-glow: #161b45;
+      --calm: #58c4c4;
+      --bubble-a: #232b63;
+      --bubble-b: #ffc857;
+      --bubble-b-ink: #161b45;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      transition: background 0.2s, color 0.2s;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      line-height: 1.15;
+      margin: 0 0 0.5em;
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; }
+    h3 { font-size: 1.25rem; font-weight: 700; }
+    p { margin: 0 0 1em; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+    
+    /* Header */
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    header.top .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      min-height: 64px;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-badge {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--brand);
+      color: var(--glow);
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .logo-badge {
+      background: var(--glow);
+      color: var(--on-glow);
+    }
+    nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    nav a:hover { color: var(--ink); text-decoration: underline; }
+    
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--on-glow);
+      color: var(--glow);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font: 700 0.95rem 'Nunito Sans', sans-serif;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn.alt { background: var(--brand); color: var(--on-brand); }
+    .btn.outline { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+    .btn.sm { padding: 0.5rem 1rem; font-size: 0.85rem; }
+    
+    /* Hero */
+    .hero { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+    .hero-grid { display: grid; gap: 3rem; grid-template-columns: 1.2fr 0.8fr; align-items: center; }
+    .lead { font-size: 1.25rem; color: var(--muted); line-height: 1.5; }
+    .call-box {
+      margin-top: 1.5rem;
+      background: var(--glow);
+      color: var(--on-glow);
+      border-radius: 1.4rem;
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 4px 14px rgba(27,37,89,0.08);
+    }
+    .call-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .call-num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1; }
+    .call-desc { font-size: 0.95rem; font-weight: 700; margin-top: 0.3rem; }
+    
+    /* Chat preview */
+    .chat-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    .chat { display: grid; gap: 0.8rem; margin: 1rem 0; }
+    .b { padding: 0.85rem 1.1rem; border-radius: 1.2rem; max-width: 88%; font-weight: 600; font-size: 0.95rem; line-height: 1.4; }
+    .b.a { background: var(--bubble-a); border-bottom-left-radius: 0.3rem; justify-self: start; color: var(--ink); }
+    .b.r { background: var(--bubble-b); color: var(--bubble-b-ink); border-bottom-right-radius: 0.3rem; justify-self: end; }
+    
+    /* Secciones */
+    section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+    .alt-bg { background: var(--surface); border-block: 1px solid var(--line); }
+    .cols-3 { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.2rem; padding: 1.4rem; }
+    .alt-bg .card { background: var(--bg); }
+    
+    /* Señales */
+    ul.signs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    ul.signs li {
+      padding: 1.1rem 1.2rem;
+      border-left: 5px solid var(--calm);
+      background: var(--surface);
+      border-radius: 0.6rem;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+    }
+    
+    /* Pasos */
+    ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); counter-reset: s; }
+    ol.steps li {
+      counter-increment: s;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 1.2rem;
+      padding: 1.4rem;
+    }
+    ol.steps li::before {
+      content: counter(s);
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      background: var(--brand);
+      color: var(--on-brand);
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+    
+    /* Afiche */
+    .poster-wrap { display: grid; gap: 2rem; grid-template-columns: minmax(0, 430px) 1fr; align-items: start; }
+    .poster {
+      --p-bg: #1b2559;
+      --p-ink: #ffffff;
+      --p-glow: #ffc857;
+      --p-dark: #161b45;
+      background: var(--p-bg);
+      color: var(--p-ink);
+      border-radius: 1.5rem;
+      padding: 2.2rem 2rem;
+      aspect-ratio: 210/297;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .poster h3 { font-size: clamp(2rem, 5vw, 2.6rem); font-weight: 800; margin: 0; line-height: 1.1; }
+    .poster .sub { font-size: 1.1rem; margin: 0.5rem 0 0; }
+    .poster .big { background: var(--p-glow); color: var(--p-dark); border-radius: 1.2rem; padding: 1.2rem 1.4rem; }
+    .poster .big b { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(2.4rem, 6vw, 3.4rem); font-weight: 800; display: block; line-height: 1; }
+    .poster .big span { font-weight: 800; font-size: 0.9rem; text-transform: uppercase; }
+    .poster .qr {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .qrbox { background: #fff; padding: 8px; border-radius: 0.8rem; line-height: 0; flex: none; }
+    .poster .legal { font-size: 0.75rem; opacity: 0.85; margin: 0; }
+    
+    .tools-card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.4rem; padding: 1.8rem; }
+    .tools-card label { display: block; font-weight: 700; margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .tools-card input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: var(--bg);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.95rem;
+    }
+    
+    footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; }
+    
+    @media (max-width: 860px) {
+      .hero-grid, .poster-wrap { grid-template-columns: 1fr; }
+    }
+    
+    /* Imprimir sólo el afiche en hoja A4 */
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      body { background: #fff !important; }
+      header.top, .hero, section:not(#afiche), footer, .tools-card, #afiche .head, .no-print { display: none !important; }
+      #afiche { padding: 0 !important; }
+      #afiche .wrap { width: 100% !important; margin: 0 !important; }
+      .poster-wrap { display: block !important; }
+      .poster {
+        border-radius: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        padding: 20mm !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera -->
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="#inicio">
+        <div class="logo-badge">♥</div>
+        <span>Hablemos a tiempo</span>
+      </a>
+      <nav aria-label="Secciones">
+        <a href="#senales">Señales</a>
+        <a href="#apoyo">Cómo apoyar</a>
+        <a href="#jovenes">Para ti</a>
+        <a href="#directorio">Directorio 24h</a>
+        <a href="#afiche">Afiche y QR</a>
+      </nav>
+      <div style="display:flex; gap:0.6rem; align-items:center;">
+        <button id="theme-btn" class="btn outline sm" type="button">🌓 Tema</button>
+        <a class="btn" href="tel:113">Llamar al 113</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span style="font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--calm); display:block; margin-bottom:0.5rem;">
+            Campaña para jóvenes de Lima Metropolitana
+          </span>
+          <h1>Pedir ayuda es un acto de valentía.</h1>
+          <p class="lead">
+            Si estás cansado(a), con mucha presión o sientes que no puedes con todo, hablar con alguien a tiempo hace la diferencia. No estás solo(a).
+          </p>
+
+          <div class="call-box">
+            <div class="call-row">
+              <div>
+                <span class="call-num">113 · opción 5</span>
+                <div class="call-desc">Orientación psicológica gratuita · 24 horas todos los días</div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                <a class="btn" href="tel:113" style="justify-content:center;">Llamar al 113</a>
+                <a class="btn sm alt" href="https://wa.me/51955557000?text=Hola,%20necesito%20orientaci%C3%B3n%20en%20salud%20mental" target="_blank" rel="noopener noreferrer" style="justify-content:center;">
+                  WhatsApp 955 557 000
+                </a>
+              </div>
+            </div>
+            <div style="font-size:0.85rem; border-top:1px solid rgba(22,27,69,0.15); padding-top:0.6rem;">
+              Al llamar, elige la <strong>opción 5</strong>. Si existe un peligro inmediato para la vida, acude con urgencia a la emergencia del hospital más cercano o llama al 106 (SAMU).
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-card" aria-label="Ejemplo de conversación de apoyo">
+          <div style="font-weight:800; font-size:1.1rem; margin-bottom:0.3rem;">Cómo abrir la puerta al diálogo</div>
+          <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1rem;">Ejemplo real de acompañamiento:</p>
+          <div class="chat">
+            <div class="b a">¿Cómo estás, de verdad?</div>
+            <div class="b r">Últimamente siento que no doy más con la presión.</div>
+            <div class="b a">Gracias por contármelo. Estoy aquí contigo, te escucho.</div>
+            <div class="b r">¿Y si llamamos juntos al 113 opción 5?</div>
+          </div>
+          <div style="font-size:0.85rem; color:var(--muted); margin-top:0.8rem; text-align:center;">
+            Preguntar con cuidado no aumenta el riesgo. Muchas veces es lo que salva una vida.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Señales -->
+    <section id="senales" class="alt-bg">
+      <div class="wrap">
+        <h2>Señales de que alguien necesita apoyo</h2>
+        <p class="lead">Ninguna señal sola confirma una crisis, pero si notas varias durante varios días seguidos en un amigo, compañero o familiar, vale la pena preguntar.</p>
+        <ul class="signs">
+          <li><strong>Aislamiento repentino:</strong> Deja de responder, se desconecta o evita salidas con amigos y familia.</li>
+          <li><strong>Cambios fuertes de rutina:</strong> Insomnio marcado, exceso de sueño, o pérdida notoria del apetito.</li>
+          <li><strong>Frases de desesperanza:</strong> Dice que es una carga, que nada tiene sentido o que no ve salida.</li>
+          <li><strong>Pérdida de entusiasmo:</strong> Abandona estudios, proyectos o cosas que antes disfrutaba profundamente.</li>
+          <li><strong>Irritabilidad o llanto:</strong> Cambios bruscos de humor, frustración constante o desgano prolongado.</li>
+          <li><strong>Despedidas inusuales:</strong> Habla de "querer desaparecer" o regala pertenencias preciadas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cómo conversar -->
+    <section id="apoyo">
+      <div class="wrap">
+        <h2>Cómo conversar con alguien que lo está pasando mal</h2>
+        <p class="lead">Preguntar con cuidado no implanta ideas nocivas. Al contrario, muchas veces es la puerta de desahogo que la persona estaba esperando.</p>
+        <ol class="steps">
+          <li>
+            <h3>1. Pregunta</h3>
+            Habla en privado y sin prisa. Pregunta de forma directa y sincera cómo se siente y si ha pensado en hacerse daño.
+          </li>
+          <li>
+            <h3>2. Escucha</h3>
+            Deja que hable sin interrumpir, juzgar ni minimizar. Frases como «no es para tanto» cierran la conversación.
+          </li>
+          <li>
+            <h3>3. Acompaña</h3>
+            Agradece su confianza, dile que le crees y que no está solo(a). Mantente en contacto durante los días siguientes.
+          </li>
+          <li>
+            <h3>4. Conecta</h3>
+            Ofrece llamar juntos al 113 opción 5 en altavoz, o coordinar con bienestar estudiantil o un centro de salud.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Para ti -->
+    <section id="jovenes" class="alt-bg">
+      <div class="wrap">
+        <h2>Un mensaje para ti</h2>
+        <div class="cols-3">
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--calm);">17 a 20 años</span>
+            <h3 style="margin-top:0.3rem;">No tienes que poder con todo solo(a)</h3>
+            <p style="font-size:0.95rem; color:var(--muted);">
+              La adaptación a los estudios superiores o la incertidumbre del inicio pesan. Hablar con alguien de confianza o un consejero universitario es el primer paso.
+            </p>
+          </div>
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--calm);">21 a 28 años</span>
+            <h3 style="margin-top:0.3rem;">Estrés y cansancio también cuentan</h3>
+            <p style="font-size:0.95rem; color:var(--muted);">
+              La presión económica, laboral y personal genera una fatiga silenciosa. No tienes que esperar a estar al borde del colapso para pedir orientación.
+            </p>
+          </div>
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--calm);">Apoyo a otros</span>
+            <h3 style="margin-top:0.3rem;">Sé el puente de ayuda</h3>
+            <p style="font-size:0.95rem; color:var(--muted);">
+              Comparte esta página o coloca el afiche con QR en tu salón o lugar de trabajo. Avisar que la ayuda existe salva vidas silenciosamente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Directorio Oficial -->
+    <section id="directorio">
+      <div class="wrap">
+        <h2>Directorio de ayuda gratuita las 24 horas</h2>
+        <p class="lead">Líneas telefónicas y servicios oficiales del Ministerio de Salud del Perú.</p>
+        <div class="cols-3">
+          <div class="card">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--calm); text-transform:uppercase;">Canal Principal</div>
+            <h3 style="margin:0.2rem 0;">Línea 113 · Opción 5</h3>
+            <p style="font-size:0.9rem; color:var(--muted);">Orientación psicológica gratuita en salud mental del MINSA las 24 horas.</p>
+            <a class="btn sm" href="tel:113" style="margin-top:0.5rem;">Llamar al 113</a>
+          </div>
+          <div class="card">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--calm); text-transform:uppercase;">Vía WhatsApp</div>
+            <h3 style="margin:0.2rem 0;">955 557 000</h3>
+            <p style="font-size:0.9rem; color:var(--muted);">Chat oficial del MINSA para quienes prefieren comunicarse por escrito.</p>
+            <a class="btn sm alt" href="https://wa.me/51955557000?text=Hola,%20busco%20orientaci%C3%B3n" target="_blank" rel="noopener noreferrer" style="margin-top:0.5rem;">Escribir a WhatsApp</a>
+          </div>
+          <div class="card">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--calm); text-transform:uppercase;">Atención Presencial</div>
+            <h3 style="margin:0.2rem 0;">Centros de Salud Mental (CSMC)</h3>
+            <p style="font-size:0.9rem; color:var(--muted);">Más de 240 centros en Lima y Perú con psiquiatras y psicólogos.</p>
+            <a class="btn sm outline" href="https://www.gob.pe/institucion/minsa/informes-publicaciones/397793-centros-de-salud-mental-comunitaria" target="_blank" rel="noopener noreferrer" style="margin-top:0.5rem;">Ubicar mi centro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Afiche con QR -->
+    <section id="afiche" class="alt-bg">
+      <div class="wrap">
+        <div class="head no-print" style="margin-bottom:1.8rem;">
+          <h2>Afiche con código QR directo a la página</h2>
+          <p class="lead">Imprímelo en A4 para tu universidad o centro. El código QR lleva directamente a esta web.</p>
+        </div>
+
+        <div class="poster-wrap">
+          <!-- Afiche para imprimir en A4 -->
+          <div class="poster" id="printable-poster" role="img" aria-label="Afiche de campaña Hablemos a tiempo">
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; opacity:0.8; margin-bottom:0.4rem;">
+                Proyecto de Salud Pública · UPC Lima
+              </div>
+              <h3>Hablemos a tiempo</h3>
+              <p class="sub">Pedir ayuda es un acto de valentía. No estás solo(a).</p>
+            </div>
+
+            <div class="big">
+              <b>113 · opción 5</b>
+              <span>Gratis · 24 horas · todos los días</span>
+            </div>
+
+            <div class="qr">
+              <div class="qrbox" id="qr-poster"></div>
+              <div>
+                <strong style="display:block; font-size:1.1rem; margin-bottom:0.2rem;">Escanea y conoce cómo apoyar a alguien</strong>
+                <span>Señales de alerta, qué responder y directorio 24 horas directo en tu celular.</span>
+              </div>
+            </div>
+
+            <p class="legal">
+              Un suicidio puede evitarse si lo hablamos a tiempo. Si necesitas consejo, orientación o ayuda, llama gratis al <strong>113, opción 5</strong>. Aquí estamos para ayudarte.
+            </p>
+          </div>
+
+          <!-- Controles -->
+          <div class="tools-card no-print">
+            <label for="url-input">Dirección web que abre el código QR:</label>
+            <input id="url-input" type="url" autocomplete="off">
+            <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">
+              Por defecto utiliza el enlace público activo en internet. Puedes probarlo con la cámara de tu celular.
+            </p>
+
+            <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.2rem;">
+              <button class="btn alt" type="button" id="print-btn">🖨️ Imprimir afiche A4</button>
+              <button class="btn outline" type="button" id="copy-btn">📋 Copiar enlace</button>
+              <button class="btn outline" type="button" id="reset-btn">🔄 Restablecer enlace</button>
+            </div>
+
+            <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--line); font-size:0.85rem; color:var(--muted);">
+              💡 <strong>Consejo para imprimir:</strong> En la ventana de impresión activa la opción <em>«Gráficos de fondo»</em> para que los colores del afiche se impriman fielmente en la hoja A4.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p style="font-weight:700; color:var(--ink);">
+        Un suicidio puede evitarse si lo hablamos a tiempo. Si necesitas consejo, orientación o ayuda, llama gratis al 113, opción 5. Aquí estamos para ayudarte.
+      </p>
+      <p>Esta página es informativa y educativa. No reemplaza la atención de un profesional de la salud ni recopila datos personales.</p>
+      <p>© 2026 Hablemos a Tiempo · Proyecto de Salud Pública · Dirigido a jóvenes de 17 a 28 años de Lima Metropolitana.</p>
+    </div>
+  </footer>
+
+  <!-- Motor de Código QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    (function(){
+      var input = document.getElementById('url-input');
+      var box = document.getElementById('qr-poster');
+      var printBtn = document.getElementById('print-btn');
+      var copyBtn = document.getElementById('copy-btn');
+      var resetBtn = document.getElementById('reset-btn');
+      var themeBtn = document.getElementById('theme-btn');
+
+      // Enlace público real
+      var defaultUrl = 'https://ais-pre-gzm4vgylmt2qcu3klo3s3w-901573959576.us-east1.run.app';
+      
+      try {
+        var cur = location.origin + location.pathname;
+        if (cur.startsWith('http') && !cur.includes('localhost') && !cur.includes('ais-dev-')) {
+          defaultUrl = cur;
+        }
+      } catch(e) {}
+
+      input.value = defaultUrl;
+
+      function renderQR() {
+        var text = input.value.trim() || defaultUrl;
+        box.innerHTML = '';
+        if (!window.QRCode) {
+          box.textContent = 'QR';
+          return;
+        }
+        try {
+          new QRCode(box, {
+            text: text,
+            width: 120,
+            height: 120,
+            colorDark: '#161b45',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } catch(err) {
+          box.textContent = 'QR';
+        }
+      }
+
+      input.addEventListener('input', renderQR);
+      window.addEventListener('load', renderQR);
+
+      printBtn.addEventListener('click', function(){
+        window.print();
+      });
+
+      copyBtn.addEventListener('click', function(){
+        navigator.clipboard.writeText(input.value);
+        copyBtn.textContent = '✅ ¡Copiado!';
+        setTimeout(function(){ copyBtn.textContent = '📋 Copiar enlace'; }, 2000);
+      });
+
+      resetBtn.addEventListener('click', function(){
+        input.value = defaultUrl;
+        renderQR();
+      });
+
+      themeBtn.addEventListener('click', function(){
+        var current = document.documentElement.getAttribute('data-theme');
+        if (current === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
